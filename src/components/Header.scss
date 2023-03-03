@@ -1,0 +1,23 @@
+.header {
+  &__logo {
+  }
+  &__form {
+  }
+  &__form-container {
+  }
+  &__avatar {
+    border-radius: 50%;
+    margin: 2rem 1rem 0rem 0;
+    height: 2.25rem;
+    width: 2.25rem;
+    object-fit: cover;
+    object-position: -5px 0;
+    // This is not working. ask help.
+    // @include tablet {
+    //   height: 3.25rem;
+    //   width: 3.25rem;
+    // }
+  }
+  &__button {
+  }
+}

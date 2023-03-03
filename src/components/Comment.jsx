@@ -1,15 +1,13 @@
-import "./Comment.scss";
-
-function Comment(props) {
-  // props.commentData == an object of comment.
+// We are specifying this comes from an object, hence, the curly brace. Only extracting commentData.
+function Comment({ commentData }) {
+  const formattedDate = new Date(commentData.timestamp).toLocaleDateString();
 
   return (
-    <div>
-      <img src="" alt="" />
-      <p>{props.commentData.name}</p>
-      <p>{props.commentData.comment}</p>
-      <p>{props.commentData.timestamp}</p>
-      <p>{props.commentData.likes}</p>
+    <div className="comment__content">
+      <img className="comment__placeholder" src="" alt="" />
+      <p className="comment__name">{commentData.name}</p>
+      <p className="comment__message">{commentData.comment}</p>
+      <p className="comment__timestamp">{formattedDate}</p>
     </div>
   );
 }

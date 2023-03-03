@@ -1,23 +1,27 @@
 import "./Comments.scss";
 import Comment from "./Comment";
 
-function Comments(props) {
+// This is destructuring
+function Comments({ commentsData }) {
   return (
-    <div>
-      {/* props.anything */}
-      <p>{props.commentsData.length}Comments</p>
-      <p>Join The Conversation</p>
+    <div className="comment">
+      <p className="comment__counter">{commentsData.length} Comments</p>
       <div>
-        <img></img>
-        <form>
-          <textarea></textarea>
-          <button>Comment</button>
+        <p className="comment__title">Join The Conversation</p>
+        <img className="comment__avatar"></img>
+        <form className="comment__form">
+          <textarea
+            className="comment__input"
+            placeholder="Add a new comment"
+          ></textarea>
+          <button className="comment__button">Comment</button>
         </form>
       </div>
-
-      {props.commentsData.map((comment) => (
-        <Comment key={comment.id} commentData={comment} />
-      ))}
+      <div>
+        {commentsData.map((comment) => (
+          <Comment key={comment.id} commentData={comment} />
+        ))}
+      </div>
     </div>
   );
 }

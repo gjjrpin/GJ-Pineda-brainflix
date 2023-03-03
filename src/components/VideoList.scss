@@ -1,0 +1,25 @@
+.side-videos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 20rem;
+  &__header {
+  }
+  &__container {
+    display: flex;
+  }
+  &__image-container {
+    width: 30%;
+  }
+  &__image {
+    height: 100%;
+    width: 100%;
+  }
+  &__sub-container {
+    width: 70%;
+  }
+  &__title {
+  }
+  &__channel {
+  }
+}
