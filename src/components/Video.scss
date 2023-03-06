@@ -4,6 +4,13 @@
 
 .content__video {
   width: 100%;
+  background-color: $dark-black;
+  @include tablet {
+    height: 24.6rem;
+  }
+  @include desktop {
+    height: 30rem;
+  }
 }
 
 .video-side {
@@ -16,7 +23,7 @@
 .content {
   padding: 1rem;
   @include tablet {
-    padding: 2rem;
+    padding: 2rem 2rem 0.8rem 2rem;
   }
   @include desktop {
     padding-right: 0;
@@ -71,7 +78,7 @@
     color: $silver;
     @include tablet {
       margin: 0;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
   }
   &__timestamp {
@@ -80,7 +87,7 @@
     margin-top: 0;
     @include tablet {
       margin: 0;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
   }
   &__likes {
@@ -89,7 +96,7 @@
     margin-top: 0;
     @include tablet {
       margin: 0;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
   }
 
@@ -113,6 +120,12 @@
     font-size: $font-size-body;
     line-height: 1.2rem;
     color: $black;
+    @include tablet {
+      line-height: 1.4rem;
+      margin: 1.5rem 0 1.5rem 0;
+      font-size: 0.85rem;
+      padding-right: 2rem;
+    }
     @include desktop {
       margin-right: 1.5rem;
     }

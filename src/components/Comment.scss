@@ -37,12 +37,22 @@
   &__name {
     font-weight: bold;
     color: $black;
+    @include tablet {
+      font-size: 0.85rem;
+    }
   }
   &__message {
     color: $black;
     margin-top: 0;
+    @include tablet {
+      font-size: 0.85rem;
+      line-height: 1.3rem;
+    }
   }
   &__timestamp {
     color: $silver;
+    @include tablet {
+      font-size: 0.85rem;
+    }
   }
 }
