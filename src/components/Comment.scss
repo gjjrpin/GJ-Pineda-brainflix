@@ -1,0 +1,48 @@
+@import "../styles/partials/fonts";
+@import "../styles/partials/mixins";
+@import "../styles/partials/colors";
+
+.comment {
+  &__content {
+    display: flex;
+    border-bottom: 0.09rem solid $mercury;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    @include tablet {
+      flex-grow: 1;
+      padding: 1rem 0 1rem 0;
+    }
+    @include desktop {
+      padding-right: 1.5rem;
+    }
+  }
+  &__sub-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__placeholder {
+    background-color: $mercury;
+    border-radius: 50%;
+    margin: 0.5rem 1rem 0 0;
+    height: 2.25rem;
+    width: 2.25rem;
+    @include tablet {
+      margin-top: 2rem;
+    }
+  }
+  &__name {
+    font-weight: bold;
+    color: $black;
+  }
+  &__message {
+    color: $black;
+    margin-top: 0;
+  }
+  &__timestamp {
+    color: $silver;
+  }
+}

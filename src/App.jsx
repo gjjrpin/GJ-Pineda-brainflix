@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./App.scss";
 import Video from "./components/Video";
 import Header from "./components/Header";
-import VideoList from "./components/VideoList";
 
 // transferring one data from data folder to video.
 import mock_data from "./data/video-details.json";
@@ -28,8 +27,8 @@ function App() {
     <>
       <Header />
       {/* we're putting the first index of data to videoData. We can access it through props.videoData */}
-      <Video videoData={currentVideo} />
-      <VideoList
+      <Video
+        videoData={currentVideo}
         videosData={videos}
         currentVideo={currentVideo}
         handleChangeVideo={changeVideo}

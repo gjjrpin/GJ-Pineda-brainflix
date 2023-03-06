@@ -1,22 +1,120 @@
-.content {
-  &__video {
+@import "../styles/partials/fonts";
+@import "../styles/partials/mixins";
+@import "../styles/partials/colors";
+
+.content__video {
+  width: 100%;
+}
+
+.video-side {
+  @include desktop {
+    display: flex;
+    padding: 0 9rem 0 8rem;
   }
+}
+
+.content {
+  padding: 1rem;
+  @include tablet {
+    padding: 2rem;
+  }
+  @include desktop {
+    padding-right: 0;
+    border-right: 0.09rem solid $mercury;
+  }
+
   &__title {
+    margin: 0;
+    padding-bottom: 1rem;
+    border-bottom: 0.09rem solid $mercury;
+    color: $black;
+    @include tablet {
+      border-bottom: none;
+      font-size: 2.15rem;
+    }
+  }
+  &__container {
+    border-bottom: 0.09rem solid $mercury;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 3rem 0.5rem 0;
+    @include tablet {
+      padding-right: 0;
+    }
+    @include desktop {
+      padding-right: 1.5rem;
+    }
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      gap: 2rem;
+      flex-direction: row;
+      &:nth-child(2) {
+        gap: 4rem;
+      }
+    }
   }
   &__channel {
+    font-size: $font-size-body;
+    font-weight: bold;
+    color: $black;
+    @include tablet {
+      margin: 0;
+      font-size: 0.85rem;
+    }
   }
   &__views {
+    font-size: $font-size-body;
+    color: $silver;
+    @include tablet {
+      margin: 0;
+      font-size: 0.85rem;
+    }
   }
   &__timestamp {
+    font-size: $font-size-body;
+    color: $silver;
+    margin-top: 0;
+    @include tablet {
+      margin: 0;
+      font-size: 0.85rem;
+    }
   }
   &__likes {
+    font-size: $font-size-body;
+    color: $silver;
+    margin-top: 0;
+    @include tablet {
+      margin: 0;
+      font-size: 0.85rem;
+    }
   }
+
   &__icons {
+    position: absolute;
+    margin-left: -2.2rem;
     &--eye {
+      background-image: url(../assets/Icons/views.svg);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-repeat: no-repeat;
     }
     &--heart {
+      background-image: url(../assets/Icons/likes.svg);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-repeat: no-repeat;
     }
   }
   &__description {
+    font-size: $font-size-body;
+    line-height: 1.2rem;
+    color: $black;
+    @include desktop {
+      margin-right: 1.5rem;
+    }
   }
 }

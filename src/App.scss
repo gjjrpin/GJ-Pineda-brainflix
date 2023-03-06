@@ -1,3 +1,15 @@
 @import "./styles/partials/fonts";
 @import "./styles/partials/mixins";
 @import "./styles/partials/colors";
+
+body {
+  margin: 0;
+}
+
+button {
+  background-color: $blue;
+  color: $white;
+  &:hover {
+    background-color: $dark-blue;
+  }
+}
