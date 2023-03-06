@@ -6,6 +6,12 @@
   &__content {
     display: flex;
     border-bottom: 0.09rem solid $mercury;
+    @include desktop {
+      // this refers to the last child that has the "comment" class.
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
   &__container {
     display: flex;
