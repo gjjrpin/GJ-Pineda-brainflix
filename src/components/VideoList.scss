@@ -25,6 +25,10 @@
   &__container {
     display: flex;
     gap: 1rem;
+    &:hover {
+      cursor: pointer;
+      // background-color: black;
+    }
   }
   &__image-container {
     width: 7rem;

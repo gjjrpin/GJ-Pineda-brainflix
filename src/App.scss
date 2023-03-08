@@ -11,5 +11,6 @@ button {
   color: $white;
   &:hover {
     background-color: $dark-blue;
+    cursor: pointer;
   }
 }

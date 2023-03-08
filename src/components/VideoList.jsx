@@ -8,6 +8,7 @@ function VideoList({ videosData, currentVideo, handleChangeVideo }) {
         .filter((video) => video.id !== currentVideo.id)
         .map((videoData) => (
           <div
+            key={videoData.id}
             className="video-list__container"
             onClick={() => handleChangeVideo(videoData.id)}
           >

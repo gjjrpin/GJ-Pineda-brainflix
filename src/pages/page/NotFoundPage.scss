@@ -1,0 +1,15 @@
+@import "../../styles/partials/fonts";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+
+.error {
+  &__title {
+    text-align: center;
+  }
+  //   Images are display inline. Need display block to center it.
+  &__image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}

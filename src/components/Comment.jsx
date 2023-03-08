@@ -2,7 +2,16 @@ import "./Comment.scss";
 
 // We are specifying this comes from an object, hence, the curly brace. Only extracting commentData.
 function Comment({ commentData }) {
-  const formattedDate = new Date(commentData.timestamp).toLocaleDateString();
+  const dateFormat = {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  };
+  // This sets the format of the timestamp to: d/m/yyyy. stored it in variable.
+  const formattedDate = new Date(commentData.timestamp).toLocaleDateString(
+    "en-US",
+    dateFormat
+  );
 
   return (
     <div className="comment__content">
