@@ -6,7 +6,7 @@ import avatar from "../assets/Images/Mohan-muruge.jpg";
 function Header() {
   return (
     <header className="header">
-      <NavLink to="/">
+      <NavLink className="header__container" to="/">
         <img className="header__logo" src={logo} alt={logo} />
       </NavLink>
       <form className="header__form" action="">

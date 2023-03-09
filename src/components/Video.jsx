@@ -3,13 +3,13 @@ import VideoList from "./VideoList";
 import CommentList from "./CommentList";
 
 // This is destructuring
-function Video({ videosData, currentVideo, handleChangeVideo }) {
+function Video({ videosData, currentVideo, handleChangeVideo, api_key }) {
   const dateFormat = {
     month: "2-digit",
     day: "2-digit",
     year: "numeric",
   };
-  // This sets the format of the timestamp to: d/m/yyyy. stored it in variable.
+  // This sets the format of the timestamp to: dd/mm/yyyy. stored it in variable.
   const formattedDate = new Date(currentVideo.timestamp).toLocaleDateString(
     "en-US",
     dateFormat
@@ -23,7 +23,10 @@ function Video({ videosData, currentVideo, handleChangeVideo }) {
         width="250"
         poster={currentVideo.image}
       >
-        <source src={currentVideo.video} type="video/mp4" />
+        <source
+          src={`${currentVideo.video}?api_key=${api_key}`}
+          type="video/mp4"
+        />
       </video>
       <div className="video-side">
         <div className="content">

@@ -20,6 +20,11 @@
     padding: 1rem 9rem 1rem 8rem;
   }
 
+  &__container {
+    align-items: center;
+    display: flex;
+  }
+
   &__logo {
     margin-bottom: 1rem;
     width: 7rem;

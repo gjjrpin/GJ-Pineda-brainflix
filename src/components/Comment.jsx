@@ -7,7 +7,7 @@ function Comment({ commentData }) {
     day: "2-digit",
     year: "numeric",
   };
-  // This sets the format of the timestamp to: d/m/yyyy. stored it in variable.
+  // This sets the format of the timestamp to: dd/mm/yyyy. stored it in variable.
   const formattedDate = new Date(commentData.timestamp).toLocaleDateString(
     "en-US",
     dateFormat
