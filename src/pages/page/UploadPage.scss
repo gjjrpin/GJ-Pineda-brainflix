@@ -5,10 +5,16 @@
 .upload {
   padding: 1rem;
   border-top: 0.09rem solid $mercury;
+  @include desktop {
+    padding: 9rem;
+  }
   &__heading {
     margin: 0.5rem 0 0.5rem 0;
     color: $black;
     font-weight: bold;
+    @include desktop {
+      border-bottom: 0.09rem solid $mercury;
+    }
   }
   &__form {
   }
@@ -23,12 +29,20 @@
     height: 100%;
     width: 100%;
     border-radius: 0.25rem;
+    @include desktop {
+      height: 11rem;
+    }
   }
   &__main-container {
     display: flex;
     flex-direction: column;
+    @include tablet {
+      border-bottom: 0.09rem solid $mercury;
+      padding-bottom: 1.5rem;
+    }
     @include desktop {
       flex-direction: row;
+      gap: 1.5rem;
     }
     &--left {
       @include tablet {
@@ -39,6 +53,7 @@
       }
     }
     &--right {
+      flex-grow: 1;
     }
   }
 
@@ -54,6 +69,9 @@
     padding: 0.5rem;
     outline-color: $blue;
     width: 100%;
+    // this removes the extension of the input boxes. fixes it.
+    // https://stackoverflow.com/questions/16907518/css-input-with-width-100-goes-outside-parents-bound
+    box-sizing: border-box;
     &::placeholder {
       color: $black;
     }
@@ -69,7 +87,15 @@
   }
 
   &__button-sub-container {
-    position: absolute;
+  }
+  &__bottom-container {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      // This reverses the order
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
   }
   &__button-icon {
     background-image: url(../../assets/Icons/publish.svg);
@@ -79,6 +105,7 @@
     margin-left: 0.5rem;
     background-repeat: no-repeat;
     background-size: 1.3rem;
+    position: absolute;
   }
 
   &__publish {
@@ -91,6 +118,9 @@
     text-transform: uppercase;
     width: 100%;
     padding: 0.75rem;
+    @include tablet {
+      width: 10rem;
+    }
   }
   &__cancel {
     margin: 2rem 0 1.5rem 0;
@@ -99,5 +129,9 @@
     color: $blue;
     text-transform: uppercase;
     font-weight: bold;
+    width: 100%;
+    @include tablet {
+      width: 10rem;
+    }
   }
 }

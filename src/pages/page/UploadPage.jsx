@@ -25,15 +25,17 @@ function UploadPage() {
             />
             <h3 className="upload__sub-heading">Add a Video Description</h3>
             <textarea
+              rows="6"
               className="upload__input"
               placeholder="Add a description to your video"
             ></textarea>
           </div>
         </div>
-        <div className="upload__button-sub-container">
-          <span className="upload__button-icon"></span>
-          <button className="upload__publish">Publish</button>
-
+        <div className="upload__bottom-container">
+          <div className="upload__button-sub-container">
+            <span className="upload__button-icon"></span>
+            <button className="upload__publish">Publish</button>
+          </div>
           <button className="upload__cancel">Cancel</button>
         </div>
       </form>
