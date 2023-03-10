@@ -25,7 +25,7 @@ function UploadPage() {
             />
             <h3 className="upload__sub-heading">Add a Video Description</h3>
             <textarea
-              rows="6"
+              rows="5"
               className="upload__input"
               placeholder="Add a description to your video"
             ></textarea>

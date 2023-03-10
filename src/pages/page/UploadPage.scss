@@ -5,18 +5,24 @@
 .upload {
   padding: 1rem;
   border-top: 0.09rem solid $mercury;
+  @include tablet {
+    padding: 1.5rem 2rem 1rem 2rem;
+  }
   @include desktop {
-    padding: 9rem;
+    padding: 2rem 9rem 11rem 8rem;
   }
   &__heading {
     margin: 0.5rem 0 0.5rem 0;
     color: $black;
     font-weight: bold;
-    @include desktop {
+    @include tablet {
+      font-size: 2rem;
       border-bottom: 0.09rem solid $mercury;
+      padding-bottom: 2rem;
     }
   }
   &__form {
+    margin: 0;
   }
 
   &__sub-heading {
@@ -64,7 +70,7 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     resize: none;
     padding: 0.5rem;
     outline-color: $blue;
@@ -73,7 +79,7 @@
     // https://stackoverflow.com/questions/16907518/css-input-with-width-100-goes-outside-parents-bound
     box-sizing: border-box;
     &::placeholder {
-      color: $black;
+      color: $dark-black;
     }
   }
   &__button-container {

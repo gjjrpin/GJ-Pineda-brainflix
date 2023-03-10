@@ -23,7 +23,6 @@ function Video({ id }) {
 
   // 1. get API key
   // 2. Once we got API key, use it to get videos through "something.com/videos/?api_key=..."
-
   useEffect(() => {
     getApiKey();
   }, []);
@@ -39,8 +38,6 @@ function Video({ id }) {
     // This means opposite of id.
     if (!id) {
       // This changes the current video to the first video via ID.
-      // Refer to app.jsx line 65.
-
       getVideoDetails(videos[0]?.id);
     } else {
       // If the URL has the id, we use bottom, if not, we use above.

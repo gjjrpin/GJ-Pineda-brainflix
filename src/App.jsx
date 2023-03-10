@@ -5,23 +5,7 @@ import HeaderPage from "./components/HeaderPage";
 import UploadPage from "./pages/page/UploadPage";
 import NotFoundPage from "./pages/page/NotFoundPage";
 
-// transferring one data from data folder to video. No longer being used as of Sprint-1
-// import mock_data from "./data/video-details.json";
-
 function App() {
-  //-----------------------------------
-  // This is getting api key using async/await
-
-  //-----------------------------------
-  // This is using the mock data. commenting it out because it's no longer used.
-
-  // update the currently selected video w/ the given ID.
-  // function changeVideo(target_id) {
-  //   console.log(target_id);
-  //   const selectedVideo = videos.filter((video) => video.id === target_id);
-
-  //   setCurrentVideo(selectedVideo[0]);
-  // }
 
   //-----------------------------------
 

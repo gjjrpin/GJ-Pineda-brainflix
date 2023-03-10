@@ -8,7 +8,6 @@ function VideoList({ videosData, currentVideo, handleChangeVideo }) {
       {videosData
         .filter((video) => video.id !== currentVideo.id)
         .map((videoData) => (
-          // you need curly braces to use Javascript within HTML.
           // This makes the videoList data into links with ID. ex. localhost:3000/videos/${videoData.id}
           <Link
             key={videoData.id}
