@@ -1,14 +1,14 @@
-import { NavLink } from "react-router-dom";
-import "./Header.scss";
+import { Link } from "react-router-dom";
+import "./HeaderPage.scss";
 import logo from "../assets/Logo/BrainFlix-logo.svg";
 import avatar from "../assets/Images/Mohan-muruge.jpg";
 
-function Header() {
+function HeaderPage() {
   return (
     <header className="header">
-      <NavLink className="header__container" to="/">
+      <Link className="header__container" to="/">
         <img className="header__logo" src={logo} alt={logo} />
-      </NavLink>
+      </Link>
       <form className="header__form" action="">
         <div className="header__form-container">
           <span className="header__icon header__icon--search"></span>
@@ -17,9 +17,9 @@ function Header() {
         </div>
         <div className="header__button-container">
           <span className="header__icon header__icon--upload"></span>
-          <NavLink to="/UploadPage">
+          <Link to="/UploadPage">
             <button className="header__button">Upload</button>
-          </NavLink>
+          </Link>
         </div>
         <img
           className="header__avatar header__avatar--right"
@@ -31,4 +31,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderPage;

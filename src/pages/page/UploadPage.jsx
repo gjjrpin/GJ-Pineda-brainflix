@@ -30,8 +30,10 @@ function UploadPage() {
             ></textarea>
           </div>
         </div>
-        <div className="upload__button-container">
+        <div className="upload__button-sub-container">
+          <span className="upload__button-icon"></span>
           <button className="upload__publish">Publish</button>
+
           <button className="upload__cancel">Cancel</button>
         </div>
       </form>
