@@ -1,17 +1,16 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Video.scss";
 import VideoList from "./VideoList";
 import CommentList from "./CommentList";
 
 // This is destructuring
 function Video({ id }) {
+  console.log(id);
   const api_url = "https://project-2-api.herokuapp.com";
-
-  const [api_key, setApi_key] = useState("");
+  const api_key = "1a30b27b-85c2-4f8a-bd4f-30020680e110";
 
   // useRef to prevent rendering "cleaning up". Not rendered.
-  const isApiKeyReady = useRef(false);
 
   // The entire data (an array of videos)
   const [videos, setVideos] = useState([]); //mock_data is the default value of "videos"
@@ -23,18 +22,29 @@ function Video({ id }) {
 
   // 1. get API key
   // 2. Once we got API key, use it to get videos through "something.com/videos/?api_key=..."
-  useEffect(() => {
-    getApiKey();
-  }, []);
 
   // useEffect will run at least once when the component is created.
   useEffect(() => {
+    console.log("component mounted");
     getVideos();
-  }, [api_key]);
+  }, []);
 
   //-----------------------------------
 
+  // This is using the API. Getting the data from the API.
+  const getVideoDetails = useCallback(
+    async (id) => {
+      const response = await axios.get(
+        `${api_url}/videos/${id}?api_key=${api_key}`
+      );
+
+      setCurrentVideo(response.data);
+    },
+    [id] // keeps function from re-rendering the app
+  );
+
   useEffect(() => {
+    // console.log(id);
     // This means opposite of id.
     if (!id) {
       // This changes the current video to the first video via ID.
@@ -47,34 +57,16 @@ function Video({ id }) {
 
   //-----------------------------------
 
-  async function getApiKey() {
-    const response = await axios.get(api_url + "/register");
-
-    isApiKeyReady.current = true;
-
-    // updates state (useState)
-    setApi_key(response.data.api_key);
-  }
   //This is getting the videos data
   async function getVideos() {
-    if (isApiKeyReady.current) {
+    try {
       const response = await axios.get(`${api_url}/videos/?api_key=${api_key}`);
 
       // updates state (useState)
       setVideos(response.data);
-
       getVideoDetails(response.data[0].id);
-    }
-  }
-
-  // This is using the API. Getting the data from the API.
-  async function getVideoDetails(id) {
-    if (isApiKeyReady.current && id) {
-      const response = await axios.get(
-        `${api_url}/videos/${id}?api_key=${api_key}`
-      );
-
-      setCurrentVideo(response.data);
+    } catch (error) {
+      console.log(error);
     }
   }
 
