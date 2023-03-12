@@ -29,7 +29,9 @@ function Comment({ commentData, deleteComment }) {
         </div>
         <p className="comment__message">{commentData.comment}</p>
         <div>
-          <button onClick={handleDeleteComment}>Delete</button>
+          <button className="comment__delete" onClick={handleDeleteComment}>
+            Delete
+          </button>
         </div>
       </div>
     </div>
