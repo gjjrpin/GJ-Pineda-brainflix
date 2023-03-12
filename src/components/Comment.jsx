@@ -1,7 +1,7 @@
 import "./Comment.scss";
 
 // We are specifying this comes from an object, hence, the curly brace. Only extracting commentData.
-function Comment({ commentData }) {
+function Comment({ commentData, deleteComment }) {
   const dateFormat = {
     month: "2-digit",
     day: "2-digit",
@@ -13,6 +13,12 @@ function Comment({ commentData }) {
     dateFormat
   );
 
+  // This will delete comments
+  function handleDeleteComment() {
+    console.log("deleted");
+    deleteComment(commentData.id);
+  }
+
   return (
     <div className="comment__content">
       <img className="comment__placeholder" />
@@ -22,6 +28,9 @@ function Comment({ commentData }) {
           <p className="comment__timestamp">{formattedDate}</p>
         </div>
         <p className="comment__message">{commentData.comment}</p>
+        <div>
+          <button onClick={handleDeleteComment}>Delete</button>
+        </div>
       </div>
     </div>
   );

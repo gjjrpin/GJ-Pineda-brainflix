@@ -1,50 +1,101 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Video.scss";
 import VideoList from "./VideoList";
 import CommentList from "./CommentList";
 
-// This is destructuring
 function Video({ id }) {
-  console.log(id);
   const api_url = "https://project-2-api.herokuapp.com";
-  const api_key = "1a30b27b-85c2-4f8a-bd4f-30020680e110";
+  const api_key = "bdd57ec0-fa70-4c84-9316-db69b13293c7";
 
-  // useRef to prevent rendering "cleaning up". Not rendered.
+  const [videos, setVideos] = useState([]);
 
-  // The entire data (an array of videos)
-  const [videos, setVideos] = useState([]); //mock_data is the default value of "videos"
-
-  // Currently selected video (one video)
   const [currentVideo, setCurrentVideo] = useState({});
 
   //-----------------------------------
 
-  // 1. get API key
-  // 2. Once we got API key, use it to get videos through "something.com/videos/?api_key=..."
+  const getVideoDetails = useCallback(
+    async (id) => {
+      if (id) {
+        try {
+          const response = await axios.get(
+            `${api_url}/videos/${id}?api_key=${api_key}`
+          );
+          const withSortedComments = response.data;
 
-  // useEffect will run at least once when the component is created.
-  useEffect(() => {
-    console.log("component mounted");
-    getVideos();
-  }, []);
+          withSortedComments.comments.sort((a, b) => b.timestamp - a.timestamp);
+
+          setCurrentVideo(withSortedComments);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
+    [id]
+  );
 
   //-----------------------------------
 
-  // This is using the API. Getting the data from the API.
-  const getVideoDetails = useCallback(
-    async (id) => {
-      const response = await axios.get(
-        `${api_url}/videos/${id}?api_key=${api_key}`
+  async function getVideos() {
+    try {
+      const response = await axios.get(`${api_url}/videos/?api_key=${api_key}`);
+
+      setVideos(response.data);
+      getVideoDetails(response.data[0].id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //---------POST COMMENT--------------------------
+
+  // This pushes the comment (diving deeper)
+  async function postNewComment(comment) {
+    try {
+      // comment: comment links to the const comment in line 7. (react state)
+      let commentObject = { name: "nigel", comment: comment };
+      const response = await axios.post(
+        `${api_url}/videos/${currentVideo.id}/comments?api_key=${api_key}`,
+        commentObject
       );
 
-      setCurrentVideo(response.data);
-    },
-    [id] // keeps function from re-rendering the app
-  );
+      // const numbers = [1,2,3,4]
+      // [...numbers,5]   = [1,2,3,4,5]
+      setCurrentVideo({
+        ...currentVideo,
+        //response.data = to the new comment. ...currentVideo.comments are the existing comments.
+        comments: [response.data, ...currentVideo.comments],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //--------DELETES COMMENTS---------------------------
+
+  async function deleteComment(id) {
+    try {
+      // comment: comment links to the const comment in line 7. (react state)
+      const response = await axios.delete(
+        `${api_url}/videos/${currentVideo.id}/comments/${id}?api_key=${api_key}`
+      );
+
+      // if looping through the comments, if the comment.id is equal to response.data.id, we remove it.
+      const updatedComments = currentVideo.comments.filter(
+        (comment) => comment.id !== response.data.id
+      );
+
+      setCurrentVideo({
+        ...currentVideo,
+        comments: [...updatedComments],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //-----------------------------------
 
   useEffect(() => {
-    // console.log(id);
     // This means opposite of id.
     if (!id) {
       // This changes the current video to the first video via ID.
@@ -55,20 +106,9 @@ function Video({ id }) {
     }
   }, [id, videos, getVideoDetails]);
 
-  //-----------------------------------
-
-  //This is getting the videos data
-  async function getVideos() {
-    try {
-      const response = await axios.get(`${api_url}/videos/?api_key=${api_key}`);
-
-      // updates state (useState)
-      setVideos(response.data);
-      getVideoDetails(response.data[0].id);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  useEffect(() => {
+    getVideos();
+  }, []);
 
   //-----------------------------------
 
@@ -122,7 +162,11 @@ function Video({ id }) {
           <p className="content__description">{currentVideo.description}</p>
           {/* && if currentVideo.comments is "TRUTHY", render <CommentList>  */}
           {currentVideo.comments && (
-            <CommentList commentsData={currentVideo.comments} />
+            <CommentList
+              commentsData={currentVideo.comments}
+              postNewComment={postNewComment}
+              deleteComment={deleteComment}
+            />
           )}
         </div>
         <VideoList

@@ -16,12 +16,6 @@ function VideoList({ videosData, currentVideo, handleChangeVideo }) {
             style={{ textDecoration: "none" }}
           >
             <div className="video-list__container">
-              {/* Below is no longer needed. Commenting out for reference. */}
-              {/* <div
-            key={videoData.id}
-            className="video-list__container"
-            onClick={() => handleChangeVideo(videoData.id)}
-          > */}
               <div className="video-list__image-container">
                 <img
                   className="video-list__image"
