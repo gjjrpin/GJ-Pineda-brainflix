@@ -4,9 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+// This is where REACT starts. We are appending the "root"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
+
+  // Next is App. Click the App
   <App />
   // </React.StrictMode>
 );

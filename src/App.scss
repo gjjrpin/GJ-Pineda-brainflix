@@ -12,8 +12,11 @@ button {
   border: none;
   border-radius: 0.25rem;
   text-transform: uppercase;
+  // The :not(.clear-bg) will remove the background color.
   &:hover {
-    background-color: $dark-blue;
+    &:not(.clear-bg) {
+      background-color: $dark-blue;
+    }
     cursor: pointer;
   }
 }

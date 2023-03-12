@@ -1,7 +1,7 @@
 import "./VideoList.scss";
 import { Link } from "react-router-dom";
 
-function VideoList({ videosData, currentVideo, handleChangeVideo }) {
+function VideoList({ videosData, currentVideo }) {
   return (
     <div className="video-list">
       <h3 className="video-list__header">Next Videos</h3>

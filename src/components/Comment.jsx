@@ -16,6 +16,7 @@ function Comment({ commentData, deleteComment }) {
   // This will delete comments
   function handleDeleteComment() {
     console.log("deleted");
+    // The .id is linked to the Video component line 115.
     deleteComment(commentData.id);
   }
 
@@ -29,6 +30,7 @@ function Comment({ commentData, deleteComment }) {
         </div>
         <p className="comment__message">{commentData.comment}</p>
         <div>
+          {/* When you click something, it does go line 17. */}
           <button className="comment__delete" onClick={handleDeleteComment}>
             Delete
           </button>

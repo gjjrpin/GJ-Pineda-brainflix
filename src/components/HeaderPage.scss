@@ -2,10 +2,6 @@
 @import "../styles/partials/mixins";
 @import "../styles/partials/colors";
 
-.error-state {
-  outline-color: $error-state;
-}
-
 .header {
   text-align: center;
   padding: 1rem;
