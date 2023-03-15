@@ -88,7 +88,7 @@ function Video({ id }) {
       // comment: comment links to the const comment. (react state)
       // This is creating a key value pair. ex. name: GJ or comment: comment.
       // we are packaging the payload in commentObject.
-      let commentObject = { name: "GJ", comment: comment };
+      let commentObject = { name: "GJ Pineda", comment: comment };
       const response = await axios.post(
         `${api_url}/videos/${currentVideo.id}/comments?api_key=${api_key}`,
         // Whenever we Post something, we always need a "payload" / data.
@@ -172,6 +172,7 @@ function Video({ id }) {
     day: "2-digit",
     year: "numeric",
   };
+
   // This sets the format of the timestamp to: dd/mm/yyyy. stored it in variable.
   const formattedDate = new Date(currentVideo.timestamp).toLocaleDateString(
     "en-US",
