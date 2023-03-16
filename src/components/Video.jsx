@@ -11,7 +11,9 @@ function Video({ id }) {
   // We are getting the api_url and api_key FROM the API documentation we were provided.
   // Refer to the API docs for more info.
   // This is a common practice, you should almost always have a const api_url and api_key.
-  const api_url = "https://project-2-api.herokuapp.com";
+
+  const api_url = "http://localhost:3000";
+  // const api_url = "https://project-2-api.herokuapp.com";
   const api_key = "bdd57ec0-fa70-4c84-9316-db69b13293c7";
 
   //-----------------------------------
@@ -41,6 +43,8 @@ function Video({ id }) {
           const response = await axios.get(
             `${api_url}/videos/${id}?api_key=${api_key}`
           );
+          console.log(response);
+          // console.log(response);
           // We are creating a reference here. response.data is the orig version
           const withSortedComments = response.data;
           // we are sorting here based in date (timestamp).
@@ -71,6 +75,29 @@ function Video({ id }) {
       // This now specifies an id within the response that we received.
       getVideoDetails(response.data[0].id);
       // This catches the error.
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // --------------------------
+
+  // This function is calling out postNewVideo backend-api (POST /videos)
+  // This is related to line 41 of videos.js backend.
+  async function postNewVideo(
+    title = "default title",
+    channel = "default channel"
+  ) {
+    try {
+      let videoObject = { title: title, channel: channel };
+      // newVideo from the backend is being stored in "response." being sent with "res.send(newVideo)" <-- from backend.
+      const response = await axios.post(`${api_url}/videos`, videoObject);
+
+      // example: below.
+      // const numbers = [1,2,3,4]
+      // [...numbers, 10] = [1,2,3,4, 10]
+      setVideos([...videos, response]);
+      // This catches the error
     } catch (error) {
       console.log(error);
     }
@@ -184,6 +211,8 @@ function Video({ id }) {
 
   return (
     <div>
+      {/* This is something I need to work on to add a new video. */}
+      {/* <button onClick={() => postNewVideo()}>Test New Video thing</button> */}
       <video
         className="content__video"
         controls
