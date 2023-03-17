@@ -15,7 +15,7 @@ function Comment({ commentData, deleteComment }) {
 
   // This will delete comments
   function handleDeleteComment() {
-    console.log("deleted");
+    // console.log("deleted");
     // The .id is linked to the Video component line 115.
     deleteComment(commentData.id);
   }

@@ -2,20 +2,26 @@ import ".././page/UploadPage.scss";
 import thumbnail from "../../assets/Images/Upload-video-preview.jpg";
 // Navigating to something directly.
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 // UploadPage function is the entire UploadPage component.
 /* Remember, EVERY FUNCTION HAS AN EMPTY PARAMETER/ARGUMENT "()".
 When we are creating a function, we need a body "{}" which specifies what that function does.
 When we call a function, we already specified what it does, we are simply calling it in another area. */
-function UploadPage() {
+function UploadPage({ videos, setVideos, api_key, api_url }) {
   // This helps us navigate back to the HomePage
   const navigate = useNavigate();
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   // When we use handleSubmit, it navigates back to "/" which is the HomePage.
   function handleSubmit(event) {
     // This prevents refreshing the page when you submit something.
     event.preventDefault();
     alert("Video upload successful!");
+    postNewVideo(title, description);
     // This returns to the homepage. Using navigate from React Router DOM.
     // Note: We do "/" because we want it to be dependent on the web app itself, not domain specific. ex. https//:www.google.com
     return navigate("/");
@@ -26,6 +32,37 @@ function UploadPage() {
     event.preventDefault();
 
     alert("Upload cancelled!");
+  }
+
+  // This function is calling out postNewVideo backend-api (POST /videos)
+  // calling postNewVideo in line 20
+  async function postNewVideo(title, description) {
+    try {
+      let videoObject = {
+        title: title,
+        channel: "GJ Pineda",
+        description: description,
+      };
+      // newVideo from the backend is being stored in "response." being sent with "res.send(newVideo)" <-- from backend.
+      const response = await axios.post(`${api_url}/videos`, videoObject);
+
+      // example: below.
+      // const numbers = [1,2,3,4]
+      // [...numbers, 10] = [1,2,3,4, 10]
+      setVideos([...videos, response]);
+      // This catches the error
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function handleTitleOnChange(event) {
+    // console.log(event.target.value);
+    setTitle(event.target.value);
+  }
+  function handleDescriptionOnChange(event) {
+    // console.log(event.target.value);
+    setDescription(event.target.value);
   }
 
   return (
@@ -49,12 +86,20 @@ function UploadPage() {
               className="upload__input"
               type="text"
               placeholder="Add a title to your video"
+              // connecting react state to input
+              value={title}
+              // This connects the input to the React state.
+              onChange={handleTitleOnChange}
             />
             <h3 className="upload__sub-heading">Add a Video Description</h3>
             <textarea
               rows="5"
               className="upload__input"
               placeholder="Add a description to your video"
+              // connecting react state to input
+              value={description}
+              // This connects the input to the React state.
+              onChange={handleDescriptionOnChange}
             ></textarea>
           </div>
         </div>

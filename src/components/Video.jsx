@@ -7,15 +7,7 @@ import CommentList from "./CommentList";
 // The props from id is coming from HomePage1
 // we are doing destructuring so we don't have to put props.id.
 // <Video id={id} />
-function Video({ id }) {
-  // We are getting the api_url and api_key FROM the API documentation we were provided.
-  // Refer to the API docs for more info.
-  // This is a common practice, you should almost always have a const api_url and api_key.
-
-  const api_url = "http://localhost:3000";
-  // const api_url = "https://project-2-api.herokuapp.com";
-  const api_key = "bdd57ec0-fa70-4c84-9316-db69b13293c7";
-
+function Video({ id, videos, setVideos, api_key, api_url }) {
   //-----------------------------------
 
   // We are creating react states here.
@@ -25,7 +17,8 @@ function Video({ id }) {
   // videos --> read. setVideos --> update.
 
   // It's square brackets because when we read a video, we want it to be an empty array.
-  const [videos, setVideos] = useState([]);
+  // No longer need this because we are now using the props
+  // const [videos, setVideos] = useState([]);
   // It's curly brackets because when we read currentVideo, we want it to be an empty object.
   const [currentVideo, setCurrentVideo] = useState({});
 
@@ -43,7 +36,7 @@ function Video({ id }) {
           const response = await axios.get(
             `${api_url}/videos/${id}?api_key=${api_key}`
           );
-          console.log(response);
+          // console.log(response);
           // console.log(response);
           // We are creating a reference here. response.data is the orig version
           const withSortedComments = response.data;
@@ -81,27 +74,6 @@ function Video({ id }) {
   }
 
   // --------------------------
-
-  // This function is calling out postNewVideo backend-api (POST /videos)
-  // This is related to line 41 of videos.js backend.
-  async function postNewVideo(
-    title = "default title",
-    channel = "default channel"
-  ) {
-    try {
-      let videoObject = { title: title, channel: channel };
-      // newVideo from the backend is being stored in "response." being sent with "res.send(newVideo)" <-- from backend.
-      const response = await axios.post(`${api_url}/videos`, videoObject);
-
-      // example: below.
-      // const numbers = [1,2,3,4]
-      // [...numbers, 10] = [1,2,3,4, 10]
-      setVideos([...videos, response]);
-      // This catches the error
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   //---------THIS POSTS A COMMENT TO THE API--------------------------
 
